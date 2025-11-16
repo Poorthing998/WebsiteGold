@@ -10,8 +10,10 @@ import {
   Lock,
   Sparkles,
   ChevronRight,
-  Gift
+  Gift,
+  ChartLine
 } from 'lucide-react'
+import SavingsProjection from './SavingsProjection'
 
 const GOLD_PRICE_PER_GRAM = 62.50 // USD per gram (example price)
 
@@ -29,6 +31,7 @@ export default function HeroSection() {
   const [isRecurring, setIsRecurring] = useState(false)
   const [showBonus, setShowBonus] = useState(false)
   const [streak, setStreak] = useState(0)
+  const [showProjections, setShowProjections] = useState(false)
 
   const currentTier = REWARD_TIERS.find(tier => grams >= tier.min && grams <= tier.max) || REWARD_TIERS[0]
   const totalPrice = grams * GOLD_PRICE_PER_GRAM
@@ -51,7 +54,7 @@ export default function HeroSection() {
   }
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-20 pt-32">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -332,6 +335,25 @@ export default function HeroSection() {
                 </div>
               </div>
 
+              {/* View Projections Button (shown when recurring) */}
+              <AnimatePresence>
+                {isRecurring && !showProjections && (
+                  <motion.button
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    onClick={() => setShowProjections(true)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-4 px-6 rounded-xl shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2 group"
+                  >
+                    <ChartLine className="w-5 h-5" />
+                    <span className="text-lg">View Future Projections</span>
+                    <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                  </motion.button>
+                )}
+              </AnimatePresence>
+
               {/* CTA Button */}
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -369,6 +391,24 @@ export default function HeroSection() {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Savings Projection Section */}
+      <AnimatePresence>
+        {showProjections && isRecurring && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-7xl mx-auto mt-16 relative z-10"
+          >
+            <SavingsProjection
+              monthlyGrams={totalWithBonus}
+              bonusPercentage={currentTier.bonus}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

@@ -5,8 +5,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Vault Gold - Build Wealth, One Gram at a Time',
-  description: 'Austrian-secured gold savings. Start investing from just 1 gram.',
+  title: 'GoldenGrams - Build Wealth, One Gram at a Time',
+  description: 'Austrian-secured gold savings. Start investing from just 1 gram with GoldenGrams.',
 }
 
 export default function RootLayout({

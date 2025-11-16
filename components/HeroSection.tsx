@@ -11,7 +11,7 @@ import {
   Sparkles,
   ChevronRight,
   Gift,
-  ChartLine
+  LineChart
 } from 'lucide-react'
 import SavingsProjection from './SavingsProjection'
 
@@ -347,7 +347,7 @@ export default function HeroSection() {
                     whileTap={{ scale: 0.98 }}
                     className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-4 px-6 rounded-xl shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2 group"
                   >
-                    <ChartLine className="w-5 h-5" />
+                    <LineChart className="w-5 h-5" />
                     <span className="text-lg">View Future Projections</span>
                     <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                   </motion.button>

@@ -490,3 +490,4 @@ export default function SavingsProjection({ monthlyGrams, bonusPercentage }: Pro
     </div>
   )
 }
+

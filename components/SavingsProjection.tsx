@@ -435,7 +435,7 @@ export default function SavingsProjection({ monthlyGrams, bonusPercentage }: Pro
                         <div className="text-4xl mb-2">🎉</div>
                         <div className="font-bold text-lg">Goal Achieved!</div>
                         <div className="text-sm opacity-90">
-                          You've reached this milestone in {timeframe} years
+                          You&apos;ve reached this milestone in {timeframe} years
                         </div>
                       </motion.div>
                     ) : (
